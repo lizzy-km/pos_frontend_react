@@ -54,15 +54,20 @@ const AddCategory = () => {
     <div
       style={{
         right: addCatForm === true ? "0" : "-100%",
+        color: color.textColor,
+          backgroundColor: color.cardBgColor,
       }}
       className=" z-[9999]  addCatForm flex flex-col justify-start items-center w-[23%] absolute bg-[#28243d] h-screen  top-0 "
     >
-      <div className=" flex py-6 px-3 justify-between items-center w-full ">
-        <p className=" text-xl font-semibold text-[#d4d4d4] "> {catMod === true ? 'Update' : 'Add'}  Category</p>
+      <div style={{
+          color: color.textColor,
+          backgroundColor: color.cardBgColor,
+        }} className=" flex py-6 px-3 justify-between items-center w-full ">
+        <p className=" text-xl font-semibold  "> {catMod === true ? 'Update' : 'Add'}  Category</p>
 
         <MdClose
           onClick={() => dispatch(GlobalOn({ global: true }))}
-          className=" text-[#d4d4d4]  cursor-pointer text-xl "
+          className="   cursor-pointer text-xl "
         />
       </div>
 

@@ -11,17 +11,27 @@ const SideBar = () => {
   const color = useSelector((state) => state.animateSlice);
 
   return (
-    <aside style={{
-      backgroundColor:color.bgColor
-    }} className=" flex fixed left-0 w-[20%] h-screen  rounded-br-md  py-2 ">
-      <div style={{
-      backgroundColor:color.bgColor
-    }} className="tracking-wide flex flex-col gap-3 w-full h-full ] justify-start items-start">
+    <aside
+      style={{
+        backgroundColor: color.bgColor,
+      }}
+      className=" flex fixed left-0 w-[20%] h-screen  rounded-br-md  py-2 "
+    >
+      <div
+        style={{
+          backgroundColor: color.bgColor,
+        }}
+        className="tracking-wide flex flex-col gap-3 w-full h-full ] justify-start items-start"
+      >
         <NavLink
           to={"/"}
-          className="cursor-pointer logo px-4 py-2 justify-center items-start font-bold text-[#9055fd]"
+          className={`cursor-pointer  px-4 py-2 justify-center items-start font-bold text-[${color.cardBgColor}]`}
         >
-          <p>LOGO</p>
+          <p
+            className={`cursor-pointer   justify-center items-start font-bold text-[${color.cardBgColor}]`}
+          >
+            LOGO
+          </p>
         </NavLink>
 
         <div className="flex  flex-col gap-1 justify-start items-center h-auto w-[90%]">
@@ -30,10 +40,9 @@ const SideBar = () => {
               dispatch(menuItemArrowOn({ menuItemArrow: !menuItemArrow }));
             }}
             style={{
-              backgroundColor:color.bgColor,
-              color:color.textColorDim
-            }
-          }
+              backgroundColor: color.bgColor,
+              color: color.textColorDim,
+            }}
             className="flex w-[100%] justify-start gap-2  hover:bg-[#3a3541] items-center pt-1 pb-2 px-4 cursor-pointer rounded-r-full"
           ></div>
 

@@ -13,6 +13,7 @@ const AddProductNew = () => {
   const { addPdForm, global, pdMod, pdId } = useSelector(
     (state) => state.animateSlice
   );
+  
   const dispatch = useDispatch();
 
   const { data } = useGetProductsQuery(pdId);
@@ -70,11 +71,16 @@ const AddProductNew = () => {
     <div
       style={{
         right: addPdForm === true ? "0" : "-100%",
+        color: color.textColor,
+          backgroundColor: color.cardBgColor,
       }}
       className=" z-[9999]  addPdForm flex flex-col justify-start items-center w-[23%] absolute bg-[#28243d] h-screen  top-0 "
     >
-      <div className=" flex py-6 px-3 justify-between items-center w-full ">
-        <p className=" text-xl font-semibold text-[#d4d4d4] ">
+      <div  style={{
+          color: color.textColor,
+          backgroundColor: color.cardBgColor,
+        }} className=" flex py-6 px-3 justify-between items-center w-full ">
+        <p className=" text-xl font-semibold  ">
           {" "}
           {pdMod === true ? "Update" : "Add"} Product
         </p>
@@ -84,7 +90,7 @@ const AddProductNew = () => {
           dispatch(setPdId(false))
         }
         }
-          className=" text-[#d4d4d4]  cursor-pointer text-xl "
+          className="   cursor-pointer text-xl "
         />
       </div>
 

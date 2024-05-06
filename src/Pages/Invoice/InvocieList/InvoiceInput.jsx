@@ -1,10 +1,12 @@
 import React from 'react'
 import { useState } from 'react'
 import { InvoiceSkeleton } from '../../../Components/skeletons/InvoiceSkeleton'
+import { useSelector } from 'react-redux'
 
 const InvoiceInput = ({invoiceLists,setFilteredData,setCurrentPage,loading}) => {
   const [invoiceNumber,setInvoiceNumber] = useState ('')
-  
+  const color = useSelector((state) => state.animateSlice);
+
   const changeHandler =  (value) => {
     setInvoiceNumber(value);
     setCurrentPage(0)
@@ -25,14 +27,22 @@ const InvoiceInput = ({invoiceLists,setFilteredData,setCurrentPage,loading}) => 
                 {loading ? (
                 <InvoiceSkeleton/>
                 ) : (
-                    <input
+                    <input style={{
+                      backgroundColor:color.bgColor,
+                      color:color.textColor,
+                      
+                      
+                    }}
                         type='text'
                         id='simple-search'
-                        className='bg-white border border-gray-300 text-gray-900 
+                        className={` border-gray-300 
                         text-sm rounded-lg focus:ring-blue-500
                         focus:border-blue-500 block 
-                        w-full ps-3 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white 
-                        dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                        w-full ps-3 p-2.5  
+                         placeholder-[${color.textColor}] placeholder:text-[${color.textColor}] placeholder-current
+                         
+                        dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+
                         placeholder='Search Invoice number here'
                         required
                         value={invoiceNumber} 

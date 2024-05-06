@@ -107,7 +107,7 @@ const Category = () => {
               color: color.textColor,
             }}
             placeholder="Search Category"
-            className="  outline-none rounded-md bg-transparent w-full h-full "
+            className="  placeholder-current outline-none rounded-md bg-transparent w-full h-full "
             type="text"
             name=""
             id=""
@@ -251,7 +251,7 @@ const Category = () => {
             color: color.textColor,
             backgroundColor: color.cardBgColor,
           }}
-          className=" flex justify-center p-2 items-center w-full  "
+          className=" flex justify-center  p-2 items-center w-full  "
         >
           <LoadingTwo isLoading={isLoading} />
         </div>
@@ -259,15 +259,15 @@ const Category = () => {
         <table
           style={{
             color: color.textColor,
-            backgroundColor: color.cardBgColor,
+            backgroundColor: color.bgColor,
           }}
           id="catListTable"
-          className="w-full overflow-y-hidden text-sm text-left rtl:text-right "
+          className="w-full overflow-y-hidden mt-4 text-sm text-left rtl:text-right "
         >
           <thead
             style={{
               color: color.textColor,
-              backgroundColor: color.cardBgColor,
+              backgroundColor: color.cardBgColor+'57',
             }}
             className="text-xs text-gray-700 uppercase "
           >
@@ -279,7 +279,7 @@ const Category = () => {
                     type="checkbox"
                     style={{
                       color: color.textColor,
-                      backgroundColor: color.cardBgColor,
+                      backgroundColor: color.bgColor,
                     }}
                     className="w-4 h-4 "
                   />
@@ -310,7 +310,7 @@ const Category = () => {
                   key={catData.id}
                   style={{
                     color: color.textColor,
-                    backgroundColor: color.cardBgColor,
+                    backgroundColor: color.bgColor,
                   }}
                   className="bg-white border-b  dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                 >
@@ -322,7 +322,7 @@ const Category = () => {
                         type="checkbox"
                         style={{
                           color: color.textColor,
-                          backgroundColor: color.cardBgColor,
+                          backgroundColor: color.bgColor,
                         }}
                         className="w-4 h-4   border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                       />
@@ -338,7 +338,7 @@ const Category = () => {
                     scope="row"
                     style={{
                       color: color.textColor,
-                      backgroundColor: color.cardBgColor,
+                      backgroundColor: color.bgColor,
                     }}
                     className="px-6 py-4 font-medium  whitespace-nowrap "
                   >
@@ -350,8 +350,8 @@ const Category = () => {
                   <td className="px-6 justify-center items-center flex  py-4">
                     <div
                       style={{
-                        color: color.cardBgColor,
-                        backgroundColor: color.textColor,
+                        color: color.textColor,
+                        backgroundColor: color.cardBgColor,
                       }}
                       onClick={() => addCategoryData(catData.productCategoryId)}
                       className="font-medium cursor-pointer text-blue-600 w-[50px] h-[30px] flex justify-center items-center  text-center rounded-l dark:text-blue-500 "
@@ -361,7 +361,7 @@ const Category = () => {
                     <MdOutlineDelete
                       style={{
                         color: color.textColor,
-                        backgroundColor: color.downTrendColor,
+                        backgroundColor: color.downTrendColor+'e7',
                       }}
                       onClick={() => deleteCategory(catData.productCategoryId)}
                       className=" cursor-pointer p-1  w-[50px] h-[30px] rounded-r text-2xl "

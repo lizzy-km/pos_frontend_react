@@ -79,11 +79,15 @@ const DateRangePickers = ({ click, setClick, loading, date, setDate }) => {
           <InvoiceSkeleton />
         ) : (
           <button
-            className="bg-white border border-gray-300 text-gray-900 text-sm
+          style={{
+            backgroundColor:color.bgColor,
+            color:color.textColor
+          }}
+            className={`bg-white border border-gray-300 text-gray-900 text-sm
             rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full
-            p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+            p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-[${color.textColor}] placeholder-current
             dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 
-            space-x-1 hover:border-blue-500"
+            space-x-1 hover:border-blue-500`}
             onClick={dateRangeHandler}
           >
             <span className="font-light text-gray-500">From :</span>

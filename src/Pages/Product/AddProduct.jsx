@@ -13,29 +13,43 @@ const AddProduct = () => {
   const { addPdForm, global, pdMod, pdId } = useSelector(
     (state) => state.animateSlice
   );
+  const color = useSelector((state) => state.animateSlice);
   const dispatch = useDispatch();
 
   const { data } = useGetProductsQuery(pdId);
   const cat = useGetProductsCategoryQuery();
 
-  const catData = cat?.data?.data?.category
-
-  console.log(data);
+  const catData = cat?.data?.data?.category;
 
   const color = useSelector((state) => state.animateSlice);
 
   const [catName, setCatName] = useState("");
   const [catCode, setCatCode] = useState("");
-  const [catPrice,setCatPrice] = useState("")
-  const [catCat,setCatCat] = useState("")
+  const [catPrice, setCatPrice] = useState("");
+  const [catCat, setCatCat] = useState("");
 
-  const lastProduct =  pdMod === false ?  data?.data.products[data?.data.products?.length-1] : null
+  const lastProduct =
+    pdMod === false
+      ? data?.data.products[data?.data.products?.length - 1]
+      : null;
 
   useEffect(() => {
-    pdMod === true ?  setCatName(data?.data.product?.productName) : setCatName(lastProduct?.productName)
-    setCatCode( pdMod === true ? data?.data.product?.productCode :lastProduct?.productCode)
-    setCatPrice(pdMod === true ? data?.data.product?.price :lastProduct?.price)
-    setCatCat(pdMod === true ? data?.data.product?.categoryCode :lastProduct?.categoryCode)
+    pdMod === true
+      ? setCatName(data?.data.product?.productName)
+      : setCatName(lastProduct?.productName);
+    setCatCode(
+      pdMod === true
+        ? data?.data.product?.productCode
+        : lastProduct?.productCode
+    );
+    setCatPrice(
+      pdMod === true ? data?.data.product?.price : lastProduct?.price
+    );
+    setCatCat(
+      pdMod === true
+        ? data?.data.product?.categoryCode
+        : lastProduct?.categoryCode
+    );
   }, [data]);
 
   const [addCat] = useAddProductsMutation();
@@ -54,39 +68,48 @@ const AddProduct = () => {
             id: pdId,
           })
         : await addCat({
-          productCode: catCode,
-          productName: catName,
-          price: Number(catPrice) ,
-          categoryCode: `${catCat}`,
+            productCode: catCode,
+            productName: catName,
+            price: Number(catPrice),
+            categoryCode: `${catCat}`,
           });
 
     addData.data && dispatch(GlobalOn({ global: false }));
 
     addData.data && window.location.reload(true);
     addData.data && dispatch(setPdMod(false));
-
-    console.log(addData);
   };
 
   return (
     <div
       style={{
         right: addPdForm === true ? "0" : "-100%",
+        color: color.textColor,
+        backgroundColor: color.cardBgColor,
       }}
-      className=" z-[9999]  addPdForm flex flex-col justify-start items-center w-[23%] absolute bg-[#28243d] h-screen  top-0 "
+      className=" z-[9999]  addPdForm flex flex-col justify-start items-center w-[23%] absolute  h-screen  top-0 "
     >
-      <div className=" flex py-6 px-3 justify-between items-center w-full ">
-        <p className=" text-xl font-semibold text-[#d4d4d4] ">
+      <div
+        style={{
+          color: color.textColor,
+          backgroundColor: color.cardBgColor,
+        }}
+        className=" flex py-6 px-3 justify-between items-center w-full "
+      >
+        <p className=" text-xl font-semibold  ">
           {" "}
           {pdMod === true ? "Update" : "Add"} Product
         </p>
 
         <MdClose
-          onClick={() =>{ dispatch(GlobalOn({ global: true })),
-          dispatch(setPdId(false))
-        }
-        }
-          className=" text-[#d4d4d4]  cursor-pointer text-xl "
+          onClick={() => {
+            dispatch(GlobalOn({ global: true })), dispatch(setPdId(false));
+          }}
+          style={{
+            color: color.textColor,
+            backgroundColor: color.cardBgColor,
+          }}
+          className="   cursor-pointer text-xl "
         />
       </div>
 

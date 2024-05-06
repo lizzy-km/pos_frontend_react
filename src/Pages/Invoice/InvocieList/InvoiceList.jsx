@@ -103,8 +103,9 @@ const InvoiceList = () => {
       <div
         style={{
           backgroundColor: color.cardBgColor,
+          color:color.textColor
         }}
-        className="flex gap-3 rounded-md bg-gray-50 h-[100vh] p-5"
+        className="flex gap-3 rounded-md  h-[100vh] p-5"
       >
         <div className="rounded-md w-full h-fit space-y-6">
           <h3 className="text-2xl font-medium">Sale Invoices List</h3>
@@ -117,6 +118,7 @@ const InvoiceList = () => {
             />
 
             <DateRangePickers
+            
               rangeColors = {[color.bgColor, color.textColor]}
               click={click}
               setClick={setClick}
@@ -128,10 +130,16 @@ const InvoiceList = () => {
           {loading ? (
             <TableSkeleton />
           ) : (
-            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <table style={{
+                backgroundColor: color.cardBgColor,
+                color:color.textColor
+              }} className="w-full rounded-t-md  text-sm text-left rtl:text-right ">
               <thead
-                className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700
-                    dark:text-gray-400"
+              style={{
+                backgroundColor: color.bgColor,
+                color:color.textColor
+              }}
+                className="text-xs rounded-t-md "
               >
                 <tr>
                   <th scope="col" className="px-6 py-3">

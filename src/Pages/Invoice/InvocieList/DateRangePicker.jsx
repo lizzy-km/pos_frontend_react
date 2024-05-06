@@ -58,7 +58,10 @@ const DateRangePicker = ({ click, setClick, loading, date, setDate }) => {
 
         TextProp: "color",
       },
-      { BgColor: color.cardBgColor, TextColor: color.textColor }
+      { 
+        BgColor: color.cardBgColor, 
+        TextColor: color.textColor 
+      }
     );
   }, [click]);
 

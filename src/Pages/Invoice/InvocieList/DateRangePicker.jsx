@@ -3,15 +3,16 @@ import { useRef } from "react";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { DateRange } from "react-date-range";
-import { addDays } from "date-fns";
+import { DateRangePicker } from "react-date-range";
 import { InvoiceSkeleton } from "../../../Components/skeletons/InvoiceSkeleton";
 import { useSelector } from "react-redux";
 
-const DateRangePicker = ({ click, setClick, loading, date, setDate }) => {
+const DateRangePickers = ({ click, setClick, loading, date, setDate }) => {
   const dateRef = useRef(null);
   const color = useSelector((state) => state.animateSlice);
 
-  const parentElement = document.querySelector(".rdrCalendarWrapper");
+  const parentElement = document.querySelector(".rdrDateRangePickerWrapper");
+  const exceptEl = document.querySelector(".rdrDays");
 
   const dateRangeHandler = () => {
     setClick(!click);
@@ -25,14 +26,20 @@ const DateRangePicker = ({ click, setClick, loading, date, setDate }) => {
   const currentEndDate = date[0].endDate.toLocaleDateString("en", options);
 
   function changeCssValue(parent, propertyName, newValue) {
-    if (!parent || !parent.childNodes) {
+    if (!parent || !parent.childNodes || parent === exceptEl) {
       return; // Exit if no parent or no child nodes
     }
 
     for (let i = 0; i < parent.childNodes.length; i++) {
       const childNode = parent.childNodes[i];
-      childNode.style?.setProperty(propertyName?.BgProp, newValue?.BgColor);
-      childNode.style?.setProperty(propertyName?.TextProp, newValue?.TextColor);
+
+      parent !== exceptEl &&
+        childNode.style?.setProperty(propertyName?.BgProp, newValue?.BgColor);
+      parent !== exceptEl &&
+        childNode.style?.setProperty(
+          propertyName?.TextProp,
+          newValue?.TextColor
+        );
 
       if (childNode.nodeType === Node.ELEMENT_NODE) {
         changeCssValue(childNode, propertyName, newValue);
@@ -58,15 +65,15 @@ const DateRangePicker = ({ click, setClick, loading, date, setDate }) => {
 
         TextProp: "color",
       },
-      { 
-        BgColor: color.cardBgColor, 
-        TextColor: color.textColor 
+      {
+        BgColor: color.cardBgColor,
+        TextColor: color.textColor,
       }
     );
   }, [click]);
 
   return (
-    <div className="min-w-[30%] relative" ref={dateRef}>
+    <div className="min-w-[30%]  relative" ref={dateRef}>
       <li>
         {loading ? (
           <InvoiceSkeleton />
@@ -91,18 +98,23 @@ const DateRangePicker = ({ click, setClick, loading, date, setDate }) => {
       <li
         style={{
           visibility: click ? "visible" : "collapse",
+
         }}
-        className="absolute right-0 top-[48px] z-50"
+        className="absolute shadow rounded-md right-0 top-[48px] z-50"
       >
-        <DateRange
+        <DateRangePicker
+        
           editableDateInputs={true}
           onChange={(item) => setDate([item.selection])}
           moveRangeOnFirstSelection={false}
           ranges={date}
+          color={color.textColor}
+          retainEndDateOnFirstSelection
+          rangeColors={[color.bgColor,color.textColor]}
         />
       </li>
     </div>
   );
 };
 
-export default DateRangePicker;
+export default DateRangePickers;
